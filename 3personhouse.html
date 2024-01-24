@@ -8,8 +8,10 @@
             color: black;
             background-color: antiquewhite;
             height: 40px;
-            width: 80px;
+            width: 120px;
             font-size: x-large;
+            text-align: center;
+            line-height: 40px;
 
         }
 
@@ -32,18 +34,6 @@
             color: black;
         }
 
-        .div2 {
-            color: black;
-            background-color: blanchedalmond;
-            height: 50px;
-            width: 160px;
-            border-radius: 5px;
-        }
-
-        .div2:active {
-            background-color: rgb(209, 187, 158);
-        }
-
         .div3 {
             height: 675px;
             width: 80%;
@@ -53,25 +43,33 @@
 
         }
 
-        .div3>div{
+        .div3>div {
             width: 300%;
             height: 100%;
-            margin-left: -675px;
+            margin-left: -400px;
         }
 
         .div3 img {
             height: 80%;
-            
+
+        }
+
+        .title {
+            list-style-type: disc;
+        }
+
+        .img {
+            width: 800px;
         }
     </style>
     <title>三仁堂</title>
 </head>
 
-<body>
+<body style="background-color: rgb(192,192,192);">
     <div class="div1">三仁堂</div>
     <div class="flex">
 
-        <a href="#">111</a>
+        <a href="#">主页</a>
         <a href="#">222</a>
         <a href="#">333</a>
         <a href="#">444</a>
@@ -83,6 +81,32 @@
             <img src="image/logo.jpg">
             <img src="image/logo.jpg">
         </div>
+    </div>
+    <div>
+        <h2>
+            <li class="title">组织介绍</li>
+        </h2>
+        <p>这是一个神秘的组织，我们只知道它是一个组织，其余信息皆是内部机密······</p>
+    </div>
+    <div>
+        <h2>
+            <li class="title">聚集地</li>
+        </h2>
+        <p class="div1">海事附校</p>
+        <img class="img" src="image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg">
+        <p class="div1">火炬山公园</p>
+        <img class="img" src="image/huojushan2.jpg">
+        <img class="img" src="image/huojushan1.jpg">
+    </div>
+    <div>
+        <h2>
+            <li class="title">主要成员</li>
+        </h2>
+        <h3>（为了保护隐私，我们使用代号）</h3>
+        <p>“头目”：LD</p>
+        <p>“喽啰”：小陈之契</p>
+        <p>“喽啰”：三木先生</p>
+        <p>“喽啰”：xx</p>
     </div>
 </body>
 
