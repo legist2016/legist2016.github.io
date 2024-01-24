@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .div1 {
+            color: red;
+            background-color: yellow;
+            height: 100px;
+            width: 200px;
+            font-size:100%;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">Hello World!</div>
+    Name：<input type="text" id="input1">
+    <button id="button1">点我</button>
+    <script lang="javascript">
+        var button1 = document.querySelector('#button1')
+        var input1 = document.querySelector('#input1')
+
+        button1.onclick = function () {
+            alert('你好！' + input1.value)
+        }
+    </script>
+</body>
+
+</html>
