@@ -8,10 +8,11 @@
             color: black;
             background-color: antiquewhite;
             height: 40px;
-            width: 120px;
+            width: 365px;
             font-size: x-large;
             text-align: center;
             line-height: 40px;
+            list-style-type: none;
 
         }
 
@@ -54,23 +55,44 @@
 
         }
 
+        .div4 {
+            width: 90%;
+            background-color: gainsboro;
+            margin: auto;
+        }
+
+        .div5 {
+            color: black;
+            background-color: antiquewhite;
+            list-style-type: none;
+            width: 365px;
+        }
+
         .title {
-            list-style-type: disc;
+            list-style-type: none;
+            background-color: beige;
+            width: 100%;
+            text-align: center;
+
         }
 
         .img {
-            width: 800px;
+            width: 1000px;
+            margin: auto;
         }
     </style>
     <title>三仁堂</title>
 </head>
 
-<body style="background-color: rgb(192,192,192);">
-    <div class="div1">三仁堂</div>
+<body style="background-color: #1f1f1f;">
+    <div>
+        <li class="div1">三仁堂</li>
+        <li class="div5">https://legist2016.github.io/3personhouse.html</li>
+    </div>
     <div class="flex">
 
         <a href="#">主页</a>
-        <a href="#">222</a>
+        <a href="http://127.0.0.1/3personhouse-huodong.html">活动</a>
         <a href="#">333</a>
         <a href="#">444</a>
         <a href="#">555</a>
@@ -86,27 +108,31 @@
         <h2>
             <li class="title">组织介绍</li>
         </h2>
-        <p>这是一个神秘的组织，我们只知道它是一个组织，其余信息皆是内部机密······</p>
+        <p class="div4">这是一个神秘的组织，它成立于2018年的海附，至今已拥有5+名成员。是友谊让人们相聚在一起，互相扶持走过风风雨雨。三仁堂，是一个组织；一个载体；一段时光；更是一群少年的纯真梦想：
+            “白马长枪飘如诗 鲜衣怒马少年时.无人扶我至青云 我自攀登凌云志.”这是三仁堂的宗旨，亦是三仁堂的精神。
+        </p>
     </div>
     <div>
         <h2>
             <li class="title">聚集地</li>
         </h2>
-        <p class="div1">海事附校</p>
-        <img class="img" src="image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg">
-        <p class="div1">火炬山公园</p>
-        <img class="img" src="image/huojushan2.jpg">
-        <img class="img" src="image/huojushan1.jpg">
+        <p class="div4">海事附校</p>
+        <div style="text-align: center;"><img class="img" src="image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg"></div>
+        <p class="div4">火炬山公园</p>
+        <div style="text-align: center;">
+            <img class="img" src="image/huojushan2.jpg">
+            <img class="img" src="image/huojushan1.jpg">
+        </div>
     </div>
     <div>
         <h2>
             <li class="title">主要成员</li>
         </h2>
-        <h3>（为了保护隐私，我们使用代号）</h3>
-        <p>“头目”：LD</p>
-        <p>“喽啰”：小陈之契</p>
-        <p>“喽啰”：三木先生</p>
-        <p>“喽啰”：xx</p>
+        <h3 class="div4">（为了保护隐私，我们使用代号）</h3>
+        <p class="div4">“头目”：LD</p>
+        <p class="div4">“喽啰”：小陈之契</p>
+        <p class="div4">“喽啰”：三木先生</p>
+        <p class="div4">“喽啰”：xx</p>
     </div>
 </body>
 
