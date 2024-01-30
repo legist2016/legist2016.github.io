@@ -3,75 +3,25 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="CSS/basic.css" type="text/css" media="all">
     <style>
-        .uptitle {
-            color: black;
-            background-color: antiquewhite;
-            height: 40px;
-            width: 365px;
-            font-size: x-large;
-            text-align: center;
-            line-height: 40px;
-            list-style-type: none;
-
-        }
-
-        .aofuptitle {
-            color: black;
-            background-color: antiquewhite;
-            list-style-type: none;
-            width: 365px;
-        }
-
-        .commontitle {
-            list-style-type: none;
-            background-color: beige;
-            width: 100%;
-            text-align: center;
-
-        }
-
-        .commontext {
-            width: 90%;
-            background-color: gainsboro;
-            margin: auto;
-            font-size: large;
-        }
-
-        div.Jump {
-            display: flex;
-            width: 100%;
-            height: 75px;
-            background-color: bisque;
-        }
-
-        div.Jump>a {
-            background-color: rgb(227, 233, 144);
-            width: 20%;
-            height: 65px;
-            margin: 5px;
-            text-align: center;
-            line-height: 65px;
-            font-size: 25px;
-            text-decoration: none;
-            color: black;
-        }
     </style>
     <title>三仁堂</title>
 </head>
 
-<body style="background-color: #1f1f1f;">
-    <div>
-        <li class="uptitle">三仁堂</li>
-        <li class="aofuptitle">https://legist2016.github.io/3personhouse.html</li>
-    </div>
-    <div class="Jump">
-
-        <a href="body.html">主页</a>
-        <a href="activity.html">活动</a>
-        <a href="#">333</a>
-        <a href="#">444</a>
-        <a href="#">555</a>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="image/图标.png" style="height: 40px;">
+            三仁堂
+        </div>
+        <div class="navbar">
+            <a href="index.html">主页</a>
+            <a href="activity.html">活动</a>
+            <a href="#">组织</a>
+            <a href="#">444</a>
+            <a href="#">555</a>
+        </div>
     </div>
     <div>
         <h2 class="commontitle">展望未来</h2>
@@ -79,10 +29,11 @@
             <a style="float: right;font-weight: 800; color: blue;" href="activity/1stsm.html">进入</a>
         </p>
         <form method="post" action="http://8.140.18.3:8217" target="_blank">
-        <p class="commontext">你可以为我们提出新活动的建议
-            : <input type="text" name="s">
-            <input type="submit" value="确定">
-        </p></form>
+            <p class="commontext">你可以为我们提出新活动的建议
+                : <input type="text" name="s">
+                <input type="submit" value="确定">
+            </p>
+        </form>
     </div>
     <div>
         <h2 class="commontitle">正在进行</h2>
