@@ -5,26 +5,22 @@
     <meta charset="utf-8">
     <style>
         html,
-        body {
+        body,
+        * {
             margin: 0;
+            padding: 0;
         }
 
-        .div1 {
-            color: red;
-            background-color: yellow;
-            height: 100px;
-            width: 200px;
-            font-size: 100%;
-
-        }
+        .container {}
 
         .container>li {
-            padding-bottom: 33%;
+            padding-bottom: 36%;
             padding-left: 0;
             margin: auto;
             width: 60%;
             background-color: chartreuse;
             overflow: hidden;
+            position: relative;
         }
 
         .container>li {
@@ -35,42 +31,50 @@
         .container>li>div>img {
             width: 100%;
             height: 100%;
+            position: absolute;
         }
+
         .container>li>div {
-            width: 100%;
+            margin-left: 10%;
+            width: 80%;
             height: 100%;
+            position: absolute;
         }
     </style>
 </head>
 
 <body>
-    <div class="div1">Hello World!强强强强强强强强强强</div>
-    Name：<input type="text" id="input1">
-    <button id="button1">点我</button>
+
 
     <ul class="container">
         <li>
-            <div><img src="image/logo.jpg"></div>
+            <div>
+                <img src="3personhouse/image/huojushan1.jpg">
+                <img src="3personhouse/image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg">
+                <img src="3personhouse/image/huojushan1.jpg">
+                <img src="3personhouse/image/huojushan2.jpg">
+            </div>
         </li>
-        <li>
-            <div><img src="image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg"></div>
-        </li>
-        <li>
-            <div><img src="image/huojushan1.jpg"></div>
-        </li>
-        <li>
-            <div><img src="image/huojushan2.jpg"></div>
-        </li>
-    </ul>
-    <div style="width:100px;height: 100px;background-color: rgb(111, 0, 228);
-        "></div>
-    <script lang="javascript">
-        var button1 = document.querySelector('#button1')
-        var input1 = document.querySelector('#input1')
 
-        button1.onclick = function () {
-            alert('你好：' + input1.value)
-        }
+    </ul>
+    <div style="display: none;">
+        <li>
+
+        </li>
+        <li>
+            <div><img src="3personhouse/image/huojushan1.jpg"></div>
+        </li>
+        <li>
+            <div><img src="3personhouse/image/huojushan2.jpg"></div>
+        </li>
+    </div>
+
+    <div style="width: 500px;height: 500px;
+    -webkit-mask-image: radial-gradient(#fff 5%, transparent 50%);">
+        <div style="background-image: url(3personhouse/image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg);"></div>
+    </div>
+    <script lang="javascript">
+
     </script>
 </body>
 
