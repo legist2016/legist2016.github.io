@@ -1,9 +1,10 @@
 html,body{
-    background-color: white;
-    background-color: #E8EDE7;
     margin: 0;
 }
 
+*{
+   margin: 0; 
+}
 
 .container {
     display: flex;
@@ -26,9 +27,6 @@ html,body{
 
 }
 
-.navbar::after{
-    
-}
 
 .navbar>a {
     width: 25%;
@@ -58,4 +56,56 @@ html,body{
     background-color: gainsboro;
     margin: auto;
     font-size: large;
+}
+
+.left-information{
+    float: left;
+    width: 395px;
+}
+
+.left-information>div{
+    position: relative;
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0; 
+}
+
+.left-information>div>dt{
+    color: #999;
+    font-weight: 700;
+    overflow: hidden;
+    padding: 0 5px 0 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90px;
+    line-height: 26px;
+    float: left;
+}
+
+.left-information>div>dd{
+    zoom: 1;
+    color: #333;
+    float: left;
+    position: relative;
+    width: 285px;
+    word-break: break-all;
+    float: left;
+    line-height: 26px;
+}
+
+.left-information>div>dd>span{
+    position: relative;
+}
+
+
+
+.lanmu{
+    background: url(../image/basicInfo-bg.png);
+    margin: 20px 0 35px;
+}
+
+.text1{
+    font-size: 14px;
+    line-height: 24px;
+    text-indent: 2em;
 }
