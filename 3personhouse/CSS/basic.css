@@ -52,11 +52,23 @@ html,body{
 
 }
 
-.commontext {
+.top{
     width: 90%;
-    background-color: gainsboro;
+    height: 533px;
     margin: auto;
     font-size: large;
+    text-indent: 2em;
+    line-height: 150%;
+    background-image: url(../image/黑衣人.png);
+    color: #fff;
+}
+
+.commontext {
+    width: 90%;
+    margin: auto;
+    font-size: large;
+    text-indent: 2em;
+    line-height: 150%;
 }
 
 .left-information{

@@ -5,7 +5,12 @@
     <meta charset="utf-8">
     <style>
         html,
-        body,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -18,14 +23,59 @@
             padding-left: 0;
             margin: auto;
             width: 60%;
-            background-color: chartreuse;
+            /*background-color: chartreuse;*/
             overflow: hidden;
             position: relative;
-        }
-
-        .container>li {
             list-style: none;
 
+        }
+
+
+        .container>li>button {
+            background-color: #0007;
+            height: 100%;
+            width: 10%;
+            z-index: 99999;
+            position: absolute;
+            border: none;
+            color: gray;
+            font-size: 50px;
+            line-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container>li>button:hover>span {
+            background-color: #0007;
+        }
+        .container>li>button>span {
+            height: 10%;
+            width: 60%;
+            border-radius: 20%;
+        }
+        .container>li>button.left>span {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            content: "<";
+        }
+
+        .container>li>button.right>span {
+            display: flex;
+            justify-content: right;
+            align-items: center;
+        }
+
+        .container>li>button.left {
+            /*background: linear-gradient(to right, #000F, #0000);*/
+            text-align: left;
+        }
+
+        .container>li>button.right {
+            /*background: linear-gradient(to left, #000F, #0000);*/
+            text-align: right;
+            left: 90%
         }
 
         .container>li>div>img {
@@ -40,40 +90,138 @@
             height: 100%;
             position: absolute;
         }
+
+        .container>li>div.left-move,
+        .container>li>div.left-move {
+            transform: translateX(0);
+            /*animation-name: left-move;*/
+            animation-duration: 1s;
+
+        }
+
+        @keyframes button-hide {
+            0% {
+                display: none;
+            }
+
+            99.9% {
+                display: none;
+            }
+
+            100% {
+                display: unset;
+            }
+        }
+
+        @keyframes left-move0 {
+            from {
+                transform: translateX(106.25%);
+            }
+
+            to {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes left-move1 {
+            from {
+                transform: translateX(106.25%);
+            }
+
+            to {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes right-move0 {
+            from {
+                transform: translateX(-106.25%);
+            }
+
+            to {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes right-move1 {
+            from {
+                transform: translateX(-106.25%);
+            }
+
+            to {
+                transform: translateX(0%);
+            }
+        }
     </style>
 </head>
 
 <body>
-
-
     <ul class="container">
         <li>
-            <div>
+            <div class="left-move">
+                <img src="3personhouse/image/huojushan2.jpg">
                 <img src="3personhouse/image/huojushan1.jpg">
                 <img src="3personhouse/image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg">
-                <img src="3personhouse/image/huojushan1.jpg">
-                <img src="3personhouse/image/huojushan2.jpg">
             </div>
+            <button class="left"><span></span></button>
+            <button class="right"><span></span></button>
         </li>
 
     </ul>
-    <div style="display: none;">
-        <li>
-
-        </li>
-        <li>
-            <div><img src="3personhouse/image/huojushan1.jpg"></div>
-        </li>
-        <li>
-            <div><img src="3personhouse/image/huojushan2.jpg"></div>
-        </li>
-    </div>
-
-    <div style="width: 500px;height: 500px;
-    -webkit-mask-image: radial-gradient(#fff 5%, transparent 50%);">
-        <div style="background-image: url(3personhouse/image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg);"></div>
-    </div>
-    <script lang="javascript">
+    <script>
+        document.querySelectorAll(".container").forEach((el, i) => {
+            var imgs = el.querySelectorAll("li>div>img")
+            imgs.forEach((img, j) => {
+                img.style.transform = `translateX(${j * 106.25}%)`
+            })
+            var n1 = imgs[0].cloneNode(),
+                n2 = imgs[1 % imgs.length].cloneNode(),
+                p1 = imgs[imgs.length - 1].cloneNode(),
+                p2 = imgs[(imgs.length * 2 - 2) % imgs.length].cloneNode();
+            n1.style.transform = `translateX(${imgs.length * 106.25}%)`
+            n2.style.transform = `translateX(${(imgs.length + 1) * 106.25}%)`
+            p1.style.transform = `translateX(${-1 * 106.25}%)`
+            p2.style.transform = `translateX(${-2 * 106.25}%)`
+            console.log(n1, n2, p1, p2)
+            el.querySelector("li>div").appendChild(n1)
+            el.querySelector("li>div").appendChild(n2)
+            el.querySelector("li>div").appendChild(p1)
+            el.querySelector("li>div").appendChild(p2)
+            var position = 0
+            var animation_iteration_count = 1
+            var set_img_div_left = (p, a) => {
+                var div = el.querySelector("li>div")
+                div.style.left = `${p * 85}%`
+                animation_iteration_count++
+                div.style.animationName = `${a}${animation_iteration_count % 2}`
+                //div.style.animationIterationCount = animation_iteration_count++
+            }
+            var moving = false
+            el.querySelector("button.right").onclick = () => {
+                if(moving)return
+                moving = true
+                position--
+                console.log(position)
+                if (-position >= imgs.length) position = 0
+                console.log(position)
+                set_img_div_left(position, "left-move")
+                setTimeout(()=>{
+                    moving = false
+                },1000)
+            }
+            el.querySelector("button.left").onclick = () => {                
+                if(moving)return
+                moving = true
+                position++
+                console.log(position)
+                if (position > 0) position -= imgs.length
+                console.log(position)
+                set_img_div_left(position, "right-move")
+                setTimeout(()=>{
+                    moving = false
+                },1000)
+            }
+        })
 
     </script>
 </body>
