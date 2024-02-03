@@ -1,24 +1,25 @@
-html,body{
+html,
+body {
     margin: 0;
-    background-color: #f5f5f5;
+    background-color: #bbb;
 }
 
-*{
-   margin: 0; 
+* {
+    margin: 0;
 }
 
 .container {
     display: flex;
     width: 100%;
     background-color: #036280;
-    color: #E8EDE7;
+    color: #E2E2E2;
 }
 
 .logo {
     width: 18%;
     justify-content: center;
     display: flex;
-    font-size:xx-large;
+    font-size: xx-large;
 }
 
 .navbar {
@@ -33,34 +34,71 @@ html,body{
     width: 25%;
     display: flex;
     justify-content: center;
-    /*color: black;*/
     text-decoration: none;
-    /*background-color: azure;*/
     color: #E8EDE7;
     font-size: larger;
     align-items: center;
 }
-.navbar>a:hover{
+
+.navbar>a:hover {
     text-decoration: underline;
 }
+
 .commontitle {
     list-style-type: none;
-    background-color: beige;
+    background-color: #969696;
     width: 100%;
     text-align: center;
-    
+
 
 }
 
-.top{
+.top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    max-height: 400px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #868686;
+}
+
+.top>div {
     width: 90%;
-    height: 533px;
-    margin: auto;
-    font-size: large;
-    text-indent: 2em;
-    line-height: 150%;
+    padding-bottom: 40%;
+    position: relative;
+
+}
+
+.top>div>div {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.top>div>div>div {
+    width: 45%;
+    height: 100%;
+    border-radius: 50%;
     background-image: url(../image/黑衣人.png);
-    color: #fff;
+    background-size: cover;
+    background-position: center;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.top>div>div>p {
+    width: 45%;
+    float: inline-end;
+    text-indent: 2em;
+    display: block;
+    margin-left: 10%;
+    font-size: x-large;
+    color: #dcdcdc;
+
 }
 
 .commontext {
@@ -71,19 +109,19 @@ html,body{
     line-height: 150%;
 }
 
-.left-information{
+.left-information {
     float: left;
     width: 395px;
 }
 
-.left-information>div{
+.left-information>div {
     position: relative;
     box-sizing: content-box;
     margin: 0;
-    padding: 0; 
+    padding: 0;
 }
 
-.left-information>div>dt{
+.left-information>div>dt {
     color: #999;
     font-weight: 700;
     overflow: hidden;
@@ -95,7 +133,7 @@ html,body{
     float: left;
 }
 
-.left-information>div>dd{
+.left-information>div>dd {
     zoom: 1;
     color: #333;
     float: left;
@@ -106,18 +144,18 @@ html,body{
     line-height: 26px;
 }
 
-.left-information>div>dd>span{
+.left-information>div>dd>span {
     position: relative;
 }
 
 
 
-.lanmu{
+.lanmu {
     background: url(../image/basicInfo-bg.png);
     margin: 20px 0 35px;
 }
 
-.text1{
+.text1 {
     font-size: 14px;
     line-height: 24px;
     text-indent: 2em;
