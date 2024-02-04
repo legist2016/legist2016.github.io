@@ -100,81 +100,24 @@
             animation-duration: 1s;
 
         }
-
-        @keyframes button-hide {
-            0% {
-                display: none;
-            }
-
-            99.9% {
-                display: none;
-            }
-
-            100% {
-                display: unset;
-            }
-        }
-
-        @keyframes left-move0 {
-            from {
-                transform: translateX(106.25%);
-            }
-
-            to {
-                transform: translateX(0%);
-            }
-        }
-
-        @keyframes left-move1 {
-            from {
-                transform: translateX(106.25%);
-            }
-
-            to {
-                transform: translateX(0%);
-            }
-        }
-
-        @keyframes right-move0 {
-            from {
-                transform: translateX(-106.25%);
-            }
-
-            to {
-                transform: translateX(0%);
-            }
-        }
-
-        @keyframes right-move1 {
-            from {
-                transform: translateX(-106.25%);
-            }
-
-            to {
-                transform: translateX(0%);
-            }
-        }
     </style>
 </head>
 
-<body style="width: 500px;">
-    <div id="album1">
-        <img src="3personhouse/image/huojushan2.jpg">
-        <img src="3personhouse/image/huojushan1.jpg">
-        <img src="3personhouse/image/黑衣人.png">
-        <img src="3personhouse/image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg">
+<body>
+    <div style="width: 500px;">
+        <div id="album1">
+            <img src="3personhouse/image/huojushan2.jpg">
+            <img src="3personhouse/image/huojushan1.jpg">
+            <img src="3personhouse/image/黑衣人.png">
+            <img src="3personhouse/image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg">
+        </div>
     </div>
     <ul class="container">
-        <li>
-            <div class="left-move">
-                <img src="3personhouse/image/huojushan2.jpg">
-                <img src="3personhouse/image/huojushan1.jpg">
-                <img src="3personhouse/image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg">
-            </div>
-            <button class="left"><span></span></button>
-            <button class="right"><span></span></button>
-        </li>
-
+        <div>
+            <img src="3personhouse/image/huojushan2.jpg">
+            <img src="3personhouse/image/huojushan1.jpg">
+            <img src="3personhouse/image/ABUIABACGAAgtcK4rQYogPrx1AIwwAw4sAk.jpg">
+        </div>
     </ul>
     <script>
         /*
@@ -235,8 +178,9 @@
                 width: 0.8,  // 宽度占父级宽比
                 sidebar: 0.2,    // 边条宽度占图片宽比
                 spacing: 0.02,    // 图片间距占图片宽比
-                durtion:1,        // 移动动画时长（秒）
+                duration: 1,        // 移动动画时长（秒）
             }
+
 
             options = Object.assign(defaultOptions, options)
             //options = defaultOptions
@@ -253,9 +197,10 @@
             imgs = out
             if (imgs.length == 1) {
                 imgs.unshift(imgs[0].cloneNode(), imgs[0].cloneNode())
+                imgs.push(imgs[0].cloneNode(), imgs[0].cloneNode())
             } else {
                 imgs.unshift(imgs[imgs.length - 2].cloneNode(), imgs[imgs.length - 1].cloneNode())
-                imgs.push(imgs[0].cloneNode(), imgs[1].cloneNode())
+                imgs.push(imgs[2].cloneNode(), imgs[3].cloneNode())
             }
             el.style.position = "relative"
             el.style.overflow = "hidden"
@@ -267,17 +212,37 @@
             movable_layer.style.width = "100%"
             movable_layer.style.height = "100%"
             movable_layer.style.position = "absolute"
+            movable_layer.style.animationDuration = options.duration + 's'
             //movable_layer.style.backgroundColor = "#abc"
             el.appendChild(movable_layer)
-            var w = 100 / (1 + options.sidebar-options.spacing)
-            var m = 50-50 / (1 + options.sidebar)
+            var w = 100 / (1 + options.sidebar - options.spacing)
+            var m = 50 - 50 / (1 + options.sidebar)
             imgs.forEach((img, i) => {
                 img.style.width = `${100 / (1 + options.sidebar)}%`
                 img.style.height = '100%'
                 img.style.position = "absolute"
-                img.style.left = `${(i-2) * w + m}%`
+                img.style.left = `${(i - 2) * w + m}%`
                 movable_layer.appendChild(img)
             })
+            var aniname = w.toString().replace('.', '_')
+            var keyframes = `
+            @keyframes move_to_left_${aniname}_0{
+            from{transform: translateX(${w}%);}
+            to{transform: translateX(0%);}}
+            @keyframes move_to_left_${aniname}_1{
+            from{transform: translateX(${w}%);}
+            to{transform: translateX(0%);}}
+            @keyframes move_to_right_${aniname}_0{
+            from{transform: translateX(-${w}%);}
+            to{transform: translateX(0%);}}
+            @keyframes move_to_right_${aniname}_1{
+            from{transform: translateX(-${w}%);}
+            to{transform: translateX(0%);}}
+            `
+            var style = document.createElement('style')
+            style.innerHTML = keyframes
+            document.head.appendChild(style)
+            console.log(keyframes)
             var left_button = document.createElement("DIV")
             var right_button = document.createElement("DIV")
             el.appendChild(left_button)
@@ -288,30 +253,38 @@
             left_button.style.position = "absolute"
             right_button.classList.add("left-button")
             right_button.style.width = `${m}%`
-            right_button.style.left = `${100-m}%`
+            right_button.style.left = `${100 - m}%`
             right_button.style.height = "100%"
             right_button.style.position = "absolute"
-            var current_position = 0,is_moving = false
-            var move_layer=(direction)=>{
-                if(is_moving)return
+            var current_position = 0, is_moving = false
+            var ani_count = 0
+            var move_layer = (direction) => {
+                if (is_moving) return
                 is_moving = true
-                current_position +=direction
-                if(current_position<0)current_position = img_count-1
-                else if(current_position>=img_count) current_position = 0
-                movable_layer.style.left = `${-current_position*w}%`
+                current_position += direction
+                if (current_position < 0) current_position = img_count - 1
+                else if (current_position >= img_count) current_position = 0
+                movable_layer.style.left = `${-current_position * w}%`
+                if (direction > 0)
+                    movable_layer.style.animationName = `move_to_left_${aniname}_${ani_count++ % 2}`
+                else
+                    movable_layer.style.animationName = `move_to_right_${aniname}_${ani_count++ % 2}`
+
                 setTimeout(() => {
                     is_moving = false
-                }, options.durtion*1000);
+                }, options.duration * 1000);
             }
-            left_button.onclick=()=>{move_layer(-1)}
-            right_button.onclick=()=>{move_layer(1)}
+            left_button.onclick = () => { move_layer(-1) }
+            right_button.onclick = () => { move_layer(1) }
 
         }
         silder({
             el: "#album1",
         })
         document.addEventListener("DOMContentLoaded", function () {
+            silder({ el: '.container', width: 1, spacing: 0.03 })
             //alert(0)
+            /*
             document.querySelectorAll(".container").forEach((el, i) => {
                 var imgs = el.querySelectorAll("li>div>img")
                 imgs.forEach((img, j) => {
@@ -364,7 +337,7 @@
                         moving = false
                     }, 1000)
                 }
-            })
+            })*/
         })
 
     </script>
