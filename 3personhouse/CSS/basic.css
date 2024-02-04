@@ -2,6 +2,7 @@ html,
 body {
     margin: 0;
     background-color: #bbb;
+    height: 100%;
 }
 
 * {
@@ -89,6 +90,12 @@ body {
     max-width: 500px;
     max-height: 500px;
 }
+.top>div>div>div:hover{
+    background-image: url(../image/joker.png),url(../image/黑衣人.png);
+    background-size: 80%,cover;
+    background-position-y: 45%,center;
+    background-repeat: no-repeat;    
+}
 
 .top>div>div>p {
     width: 45%;
@@ -96,16 +103,28 @@ body {
     text-indent: 2em;
     display: block;
     margin-left: 10%;
-    font-size: x-large;
+    font-size: 1.5em;
     color: #dcdcdc;
 
 }
 
+/*
+@media only screen and (max-width: 960px) {
+    .top>div>div>p {
+        font-size: 1.1em;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .top>div>div>p {
+        font-size : 0.9em;
+    }
+}
+*/
+
 .commontext {
     width: 90%;
-    margin: auto;
     font-size: large;
-    text-indent: 2em;
     line-height: 150%;
 }
 
