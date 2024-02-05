@@ -100,11 +100,44 @@
             animation-duration: 1s;
 
         }
+        #album1{
+            border-radius: 50%;
+        }
+        #album1>.side-button {
+            background-color: #1117;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #album1>.side-button::before {
+            content: "《";
+            width: 50px;
+            height: 50px;            
+            background-color: #1117;
+            border-radius: 10%;
+            color: #ccc;
+            font-weight: 900;
+            font-size: 20px;
+            text-indent: 11px;
+            line-height: 50px;
+            position: absolute;
+            cursor: pointer;
+
+        }
+
+
+        #album1>.right-button::before {
+            content: "》";
+            text-indent: 21px;
+        }
+        
     </style>
 </head>
 
 <body>
-    <div style="width: 500px;">
+    <div style="width: unset;">
         <div id="album1">
             <img src="../3personhouse/image/huojushan2.jpg">
             <img src="../3personhouse/image/huojushan1.jpg">
@@ -176,7 +209,7 @@
             var defaultOptions = {
                 slope: 0.75, // 显示图片的宽高比例=height/width
                 width: 0.8,  // 宽度占父级宽比
-                sidebar: 0.2,    // 边条宽度占图片宽比
+                sidebar: 0.1,    // 边条宽度占图片宽比
                 spacing: 0.02,    // 图片间距占图片宽比
                 duration: 1,        // 移动动画时长（秒）
             }
@@ -205,7 +238,14 @@
             el.style.position = "relative"
             el.style.overflow = "hidden"
             el.style.width = `${options.width * 100}%`
-            var h = options.width / (1 + options.sidebar) * options.slope
+            /** 图片高宽比为slope，图片宽度+2边条宽度+2间距 = 展示区宽度，
+             *  边条宽 = 图片宽度 * sidebar
+             *  间距   = 图片宽度 * spacing
+             *  图宽 * （1 + 2 * sidebar + 2 * spacing ）= 展示区宽度
+             *  图宽 = 展示区宽度 / （1 + 2 * sidebar + 2 * spacing ）
+             *  图高 = 图宽 * slope = 展示区宽度 / （1 + 2 * sidebar + 2 * spacing ） * slope
+             * */
+            var h = options.width / (1 + 2 * options.sidebar + 2 * options.spacing) * options.slope
             el.style.paddingBottom = `${h * 100}%`
             var movable_layer = document.createElement("DIV")
             movable_layer.classList.add("movable-layer")
@@ -215,28 +255,51 @@
             movable_layer.style.animationDuration = options.duration + 's'
             //movable_layer.style.backgroundColor = "#abc"
             el.appendChild(movable_layer)
-            var w = 100 / (1 + options.sidebar - options.spacing)
-            var m = 50 - 50 / (1 + options.sidebar)
+            /**
+             * 
+             * */
+
+            /** 
+             * 图宽% = 图宽 / 展示区宽度 * 100%
+             *      = 图宽 / （图宽 * (1 + 2 * sidebar + 2 * spacing )) * 100%
+             *      = 100% / (1 + 2 * sidebar + 2 * spacing ) 
+             * */
+            var img_width = 100 / (1 + 2 * options.sidebar + 2 * options.spacing)
+            /**
+             * 单位移动区宽度% = （图宽 + 间距）/ 展示区宽度 * 100%
+             *                = （图宽 + 间距）/ (图宽 * (1 + 2 * sidebar + 2 * spacing )) * 100%
+             *                =  (图宽 + 图宽 * spacing) / （图宽 * (1 + 2 * sidebar + 2 * spacing )) * 100%
+             *                =  (1+spacing)*100%/(1 + 2 * sidebar + 2 * spacing ) %
+             * 100 / (1 + 2 * options.sidebar + 2*options.spacing) = img_width
+             * */
+            var moving_width = (1 + options.spacing) * img_width
+            /**
+             * 边条宽% = 边条宽 / 展示区宽度 * 100%
+             *         = 图宽 * sidebar / (图宽 * (1 + 2 * sidebar + 2 * spacing )) * 100%
+             *         = 100% * sidebar / (1 + 2 * sidebar + 2 * spacing )
+             * */
+            var side_width = options.sidebar * img_width
+            var spacing_width = options.spacing * img_width
             imgs.forEach((img, i) => {
-                img.style.width = `${100 / (1 + options.sidebar)}%`
+                img.style.width = `${img_width}%`
                 img.style.height = '100%'
                 img.style.position = "absolute"
-                img.style.left = `${(i - 2) * w + m}%`
+                img.style.left = `${(i - 2) * moving_width + side_width + spacing_width}%`
                 movable_layer.appendChild(img)
             })
-            var aniname = w.toString().replace('.', '_')
+            var aniname = moving_width.toString().replace('.', '_')
             var keyframes = `
             @keyframes move_to_left_${aniname}_0{
-            from{transform: translateX(${w}%);}
+            from{transform: translateX(${moving_width}%);}
             to{transform: translateX(0%);}}
             @keyframes move_to_left_${aniname}_1{
-            from{transform: translateX(${w}%);}
+            from{transform: translateX(${moving_width}%);}
             to{transform: translateX(0%);}}
             @keyframes move_to_right_${aniname}_0{
-            from{transform: translateX(-${w}%);}
+            from{transform: translateX(-${moving_width}%);}
             to{transform: translateX(0%);}}
             @keyframes move_to_right_${aniname}_1{
-            from{transform: translateX(-${w}%);}
+            from{transform: translateX(-${moving_width}%);}
             to{transform: translateX(0%);}}
             `
             var style = document.createElement('style')
@@ -247,13 +310,13 @@
             var right_button = document.createElement("DIV")
             el.appendChild(left_button)
             el.appendChild(right_button)
-            left_button.classList.add("left-button")
-            left_button.style.width = `${m}%`
+            left_button.classList.add("side-button", "left-button")
+            left_button.style.width = `${side_width}%`
             left_button.style.height = "100%"
             left_button.style.position = "absolute"
-            right_button.classList.add("left-button")
-            right_button.style.width = `${m}%`
-            right_button.style.left = `${100 - m}%`
+            right_button.classList.add("side-button", "right-button")
+            right_button.style.width = `${side_width}%`
+            right_button.style.left = `${100 - side_width}%`
             right_button.style.height = "100%"
             right_button.style.position = "absolute"
             var current_position = 0, is_moving = false
@@ -264,7 +327,7 @@
                 current_position += direction
                 if (current_position < 0) current_position = img_count - 1
                 else if (current_position >= img_count) current_position = 0
-                movable_layer.style.left = `${-current_position * w}%`
+                movable_layer.style.left = `${-current_position * moving_width}%`
                 if (direction > 0)
                     movable_layer.style.animationName = `move_to_left_${aniname}_${ani_count++ % 2}`
                 else
@@ -282,7 +345,7 @@
             el: "#album1",
         })
         document.addEventListener("DOMContentLoaded", function () {
-            silder({ el: '.container', width: 1, spacing: 0.03 })
+            silder({ el: '.container', width: 1, spacing: 0.018,sidebar:0.05,duration:1})
             //alert(0)
             /*
             document.querySelectorAll(".container").forEach((el, i) => {
