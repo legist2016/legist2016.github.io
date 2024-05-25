@@ -1,0 +1,8 @@
+<script>
+    async function load(){
+        var resp = await fetch('cloud_player_app.json')
+        var json = await resp.json()
+        console.log(json)
+    }
+    load()
+</script>
