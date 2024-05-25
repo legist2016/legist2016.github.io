@@ -86,7 +86,7 @@
               });
           });
       }
-      var query = new URLSearchParams(location.search).get('url')
+      var query = new URLSearchParams(location.search)
       //var src = decodeURIComponent(location.search.match(new RegExp("[\?\&]([^\&]+)", "i"))[1])
       document.title = query.get('title')
       playM3U8(query.get(url));
