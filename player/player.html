@@ -86,9 +86,10 @@
               });
           });
       }
-      
-      var src = decodeURIComponent(location.search.match(new RegExp("[\?\&]([^\&]+)", "i"))[1])
-      playM3U8(src);
+      var query = new URLSearchParams(location.search).get('url')
+      //var src = decodeURIComponent(location.search.match(new RegExp("[\?\&]([^\&]+)", "i"))[1])
+      document.title = query.get('title')
+      playM3U8(query.get(url));
 
       var fsbtn = document.getElementById('fsbtn')
       var div = document.getElementById('div')
